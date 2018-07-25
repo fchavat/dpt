@@ -1,0 +1,42 @@
+<h1>Editing User</h1>
+
+<%= form_with model: @user, local: true do |form|  %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being updated:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <p id='notice'><%= flash[:alert] %></p>
+  <% end %>
+  <fieldset>
+    <div>
+      <%= form.label :name, 'Username' %>
+      <%= form.text_field :name, id: :name %>
+    </div>
+    <div>
+      <%= form.label :current_password, 'Current password' %>
+      <%= form.password_field :current_password, id: :current_password %>
+    </div>
+    <div>
+      <%= form.label :password, 'New password' %>
+      <%= form.password_field :password, id: :password %>
+    </div>
+    <div>
+      <%= form.label :password_confirmation, 'Confirm' %>
+      <%= form.password_field :password_confirmation, id: :password_confirmation %>
+    </div>
+    <div>
+     <%= form.submit %>
+    </div>
+  </fieldset>
+<% end %>
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>
